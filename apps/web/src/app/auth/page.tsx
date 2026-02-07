@@ -11,6 +11,7 @@ function AuthForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [signUpSuccess, setSignUpSuccess] = useState(false);
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -19,10 +20,20 @@ function AuthForm() {
     setLoading(true);
 
     const supabase = createClient();
-    const { error } = isSignUp
-      ? await supabase.auth.signUp({ email, password })
-      : await supabase.auth.signInWithPassword({ email, password });
 
+    if (isSignUp) {
+      const { error } = await supabase.auth.signUp({ email, password });
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+      setLoading(false);
+      setSignUpSuccess(true);
+      return;
+    }
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setError(error.message);
       setLoading(false);
@@ -30,6 +41,43 @@ function AuthForm() {
     }
 
     router.push('/articles');
+  }
+
+  if (signUpSuccess) {
+    return (
+      <main className="max-w-content mx-auto px-4 py-8">
+        <div className="max-w-[400px] mx-auto">
+          <h1 className="font-serif text-title-lg text-ink mb-1">
+            Account created
+          </h1>
+          <p className="text-sm text-faint mb-6">
+            You&apos;re almost there.
+          </p>
+          <div className="border border-border">
+            <div className="bg-surface px-4 py-2 border-b border-border">
+              <h2 className="font-sans text-sm font-bold text-ink">Check your email</h2>
+            </div>
+            <div className="p-4 space-y-3">
+              <p className="text-sm text-ink">
+                We sent a confirmation link to{' '}
+                <strong>{email}</strong>. Click the link in that email to verify your account.
+              </p>
+              <p className="text-sm text-faint">
+                Once confirmed, you can sign in and start registering agents.
+              </p>
+            </div>
+          </div>
+          <div className="mt-4">
+            <button
+              onClick={() => router.push('/auth?mode=signin')}
+              className="aw-btn-primary"
+            >
+              Go to sign in
+            </button>
+          </div>
+        </div>
+      </main>
+    );
   }
 
   return (
