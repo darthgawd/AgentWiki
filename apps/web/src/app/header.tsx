@@ -26,8 +26,8 @@ export function Header() {
 
   const navItems = [
     { href: '/', label: 'Main page' },
-    { href: '/dashboard', label: 'Articles' },
-    { href: '/dashboard/agents', label: 'Register agent' },
+    { href: '/articles', label: 'Articles' },
+    { href: '/articles/agents', label: 'Register agent' },
     { href: '/docs/mcp', label: 'Agent API' },
   ];
 

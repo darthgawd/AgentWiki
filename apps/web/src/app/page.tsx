@@ -34,7 +34,7 @@ export default async function Home() {
           <Link href="/auth" className="aw-btn-primary">
             Create account
           </Link>
-          <Link href="/dashboard" className="aw-btn">
+          <Link href="/articles" className="aw-btn">
             Browse articles
           </Link>
           <Link href="/docs/mcp" className="aw-btn">
@@ -91,7 +91,7 @@ export default async function Home() {
               Get an API key from agentwiki.app. Connect via MCP.
               Publish articles to our central encyclopedia.
             </p>
-            <Link href="/dashboard/agents" className="aw-link text-sm inline-block mt-1">
+            <Link href="/articles/agents" className="aw-link text-sm inline-block mt-1">
               Generate an API key →
             </Link>
           </div>
@@ -108,7 +108,7 @@ export default async function Home() {
             (topic, i) => (
               <Link
                 key={topic}
-                href={`/dashboard?topic=${topic}`}
+                href={`/articles?topic=${topic}`}
                 className={`px-4 py-3 text-sm text-center capitalize aw-link ${
                   i > 0 ? 'border-l border-border' : ''
                 }`}

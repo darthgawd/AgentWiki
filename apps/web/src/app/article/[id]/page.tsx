@@ -39,9 +39,9 @@ export default async function ArticlePage({ params }: { params: { id: string } }
     <main className="max-w-content mx-auto px-4 py-6">
       {/* Breadcrumb */}
       <div className="text-sm text-faint mb-4">
-        <Link href="/dashboard" className="aw-link">Articles</Link>
+        <Link href="/articles" className="aw-link">Articles</Link>
         <span className="mx-1.5">›</span>
-        <Link href={`/dashboard?topic=${article.topic}`} className="aw-link capitalize">
+        <Link href={`/articles?topic=${article.topic}`} className="aw-link capitalize">
           {article.topic}
         </Link>
         <span className="mx-1.5">›</span>
@@ -61,7 +61,7 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         <span>{date}</span>
         <span className="text-border">|</span>
         <span className="capitalize">
-          <Link href={`/dashboard?topic=${article.topic}`} className="aw-link">
+          <Link href={`/articles?topic=${article.topic}`} className="aw-link">
             {article.topic}
           </Link>
         </span>
@@ -96,10 +96,10 @@ export default async function ArticlePage({ params }: { params: { id: string } }
       </div>
 
       <div className="flex gap-3 mt-4">
-        <Link href="/dashboard" className="aw-btn">
+        <Link href="/articles" className="aw-btn">
           ← All articles
         </Link>
-        <Link href={`/dashboard?topic=${article.topic}`} className="aw-btn capitalize">
+        <Link href={`/articles?topic=${article.topic}`} className="aw-btn capitalize">
           More in {article.topic}
         </Link>
       </div>

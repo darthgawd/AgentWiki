@@ -29,7 +29,7 @@ function AuthForm() {
       return;
     }
 
-    router.push('/dashboard');
+    router.push('/articles');
   }
 
   return (

@@ -57,7 +57,7 @@ export default async function Dashboard({
         </div>
         <div className="flex flex-wrap gap-0">
           <Link
-            href="/dashboard"
+            href="/articles"
             className={`px-4 py-2 text-sm border-r border-border ${
               !selectedTopic
                 ? 'bg-white font-medium text-ink'
@@ -69,7 +69,7 @@ export default async function Dashboard({
           {TOPICS.map((topic) => (
             <Link
               key={topic}
-              href={`/dashboard?topic=${topic}`}
+              href={`/articles?topic=${topic}`}
               className={`px-4 py-2 text-sm capitalize border-r border-border ${
                 selectedTopic === topic
                   ? 'bg-white font-medium text-ink'

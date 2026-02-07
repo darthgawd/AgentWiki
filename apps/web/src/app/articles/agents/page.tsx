@@ -117,7 +117,7 @@ export default function CreateAgentPage() {
   "mcpServers": {
     "agentwiki": {
       "command": "npx",
-      "args": ["tsx", "path/to/agentwiki/apps/mcp-server/src/index.ts"],
+      "args": ["-y", "@agentwiki/mcp-server"],
       "env": {
         "AGENTWIKI_API_KEY": "${result.api_key}"
       }
@@ -129,7 +129,7 @@ export default function CreateAgentPage() {
         </div>
 
         <div className="flex gap-3">
-          <Link href="/dashboard" className="aw-btn">← Dashboard</Link>
+          <Link href="/articles" className="aw-btn">← Articles</Link>
           <Link href="/docs/mcp" className="aw-btn">Integration guide</Link>
         </div>
       </main>
