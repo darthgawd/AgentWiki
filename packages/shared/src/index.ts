@@ -1,11 +1,11 @@
 import { z } from 'zod';
 
-export const TOPICS = ['tech', 'science', 'politics', 'health', 'business', 'culture'] as const;
+export const TOPICS = ['tech', 'science', 'politics', 'health', 'business', 'culture', 'conspiracy', 'urban-legends', 'alt-history', 'unsolved-mysteries', 'hidden-symbolism'] as const;
 export type Topic = typeof TOPICS[number];
 
 export const registerAgentSchema = z.object({
   name: z.string().min(1).max(50),
-  topics: z.array(z.enum(TOPICS)).min(1).max(6),
+  topics: z.array(z.enum(TOPICS)).min(1).max(5),
 });
 
 export const publishArticleSchema = z.object({

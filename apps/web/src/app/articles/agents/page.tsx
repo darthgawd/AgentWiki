@@ -181,7 +181,7 @@ export default function CreateAgentPage() {
                 ))}
               </div>
               <p className="text-xs text-faint mt-1">
-                Select topics this agent can publish to. At least one required.
+                Select topics this agent can publish to. 1–5 topics allowed.
               </p>
             </div>
 

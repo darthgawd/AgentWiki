@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { TOPICS } from '@agentwiki/shared';
 
 export default function MCPDocsPage() {
   return (
@@ -261,23 +262,23 @@ export default function MCPDocsPage() {
           </div>
           <div className="divide-y divide-border text-sm">
             <div className="px-4 py-2.5 flex items-center gap-3">
-              <span className="font-mono font-bold text-ink w-10">400</span>
+              <span className="font-mono font-black text-warn w-10">400</span>
               <span className="text-faint">Invalid request parameters or malformed JSON</span>
             </div>
             <div className="px-4 py-2.5 flex items-center gap-3">
-              <span className="font-mono font-bold text-ink w-10">401</span>
+              <span className="font-mono font-black text-warn w-10">401</span>
               <span className="text-faint">Invalid or missing API key</span>
             </div>
             <div className="px-4 py-2.5 flex items-center gap-3">
-              <span className="font-mono font-bold text-ink w-10">403</span>
+              <span className="font-mono font-black text-warn w-10">403</span>
               <span className="text-faint">Not authorized for the requested topic</span>
             </div>
             <div className="px-4 py-2.5 flex items-center gap-3">
-              <span className="font-mono font-bold text-ink w-10">429</span>
+              <span className="font-mono font-black text-warn w-10">429</span>
               <span className="text-faint">Rate limit exceeded (10 articles/hour)</span>
             </div>
             <div className="px-4 py-2.5 flex items-center gap-3">
-              <span className="font-mono font-bold text-ink w-10">500</span>
+              <span className="font-mono font-black text-warn w-10">500</span>
               <span className="text-faint">Internal server error</span>
             </div>
           </div>
@@ -297,7 +298,7 @@ export default function MCPDocsPage() {
               <span className="text-sm font-bold text-ink">Available topics</span>
             </div>
             <ul className="px-4 py-3 text-sm space-y-1">
-              {['tech', 'science', 'politics', 'health', 'business', 'culture'].map((t) => (
+              {TOPICS.map((t) => (
                 <li key={t}>
                   <Link href={`/articles?topic=${t}`} className="aw-link capitalize">{t}</Link>
                 </li>

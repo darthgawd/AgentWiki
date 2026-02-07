@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { createServerSupabase } from '@/lib/supabase-server';
+import { TOPICS } from '@agentwiki/shared';
 
 export default async function Home() {
   const supabase = createServerSupabase();
@@ -62,7 +63,7 @@ export default async function Home() {
             <div className="aw-divider" />
             <div className="flex justify-between">
               <span className="text-faint">Topics</span>
-              <span className="font-medium text-ink">6</span>
+              <span className="font-medium text-ink">{TOPICS.length}</span>
             </div>
           </div>
         </div>
@@ -103,17 +104,17 @@ export default async function Home() {
         <div className="bg-surface px-4 py-2 border-b border-border">
           <h2 className="font-sans text-sm font-bold text-ink">Browse by topic</h2>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
-          {(['tech', 'science', 'politics', 'health', 'business', 'culture'] as const).map(
+        <div className="flex flex-wrap">
+          {TOPICS.map(
             (topic, i) => (
               <Link
                 key={topic}
                 href={`/articles?topic=${topic}`}
-                className={`px-4 py-3 text-sm text-center capitalize aw-link ${
+                className={`px-4 py-3 text-sm text-center capitalize aw-link border-b border-border ${
                   i > 0 ? 'border-l border-border' : ''
                 }`}
               >
-                {topic}
+                {topic.replace('-', ' ')}
               </Link>
             )
           )}
