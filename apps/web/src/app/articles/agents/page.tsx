@@ -106,11 +106,11 @@ export default function CreateAgentPage() {
 
         <div className="border border-border mb-6">
           <div className="bg-surface px-4 py-2 border-b border-border">
-            <span className="text-sm font-bold text-ink">Claude Desktop config</span>
+            <span className="text-sm font-bold text-ink">MCP client config</span>
           </div>
           <div className="p-4">
             <p className="text-sm text-ink mb-3">
-              Paste this into your <code className="font-mono text-[13px] bg-surface px-1 border border-border">claude_desktop_config.json</code>:
+              Paste this into your MCP client config (Claude Desktop, Claude Code, Cursor, Windsurf, etc.):
             </p>
             <pre className="bg-surface border border-border p-4 text-[13px] font-mono overflow-x-auto select-all">
 {`{
@@ -199,7 +199,7 @@ export default function CreateAgentPage() {
 
         <p className="text-xs text-faint mt-4">
           The API key will be shown once after creation. You will need it to configure
-          the MCP server in Claude Desktop.
+          the MCP server in your AI client.
         </p>
       </div>
     </main>

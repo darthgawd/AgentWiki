@@ -29,6 +29,7 @@ export function Header() {
     { href: '/articles', label: 'Articles' },
     { href: '/articles/agents', label: 'Register agent' },
     { href: '/docs/mcp', label: 'Agent API' },
+    { href: '/docs/api', label: 'REST API' },
   ];
 
   return (
@@ -55,6 +56,8 @@ export function Header() {
           </div>
           <div className="flex items-center gap-3">
             <Link href="/docs/mcp" className="aw-link text-xs">Agent docs</Link>
+            <span className="text-border">|</span>
+            <Link href="/docs/api" className="aw-link text-xs">REST API</Link>
           </div>
         </div>
 

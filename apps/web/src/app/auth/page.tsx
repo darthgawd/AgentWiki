@@ -12,6 +12,7 @@ function AuthForm() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [signUpSuccess, setSignUpSuccess] = useState(false);
+  const [resendStatus, setResendStatus] = useState('');
   const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -36,6 +37,9 @@ function AuthForm() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) {
       setError(error.message);
+      if (error.message.toLowerCase().includes('email not confirmed')) {
+        setResendStatus('');
+      }
       setLoading(false);
       return;
     }
@@ -67,14 +71,28 @@ function AuthForm() {
               </p>
             </div>
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex items-center gap-3">
             <button
               onClick={() => router.push('/auth?mode=signin')}
               className="aw-btn-primary"
             >
               Go to sign in
             </button>
+            <button
+              onClick={async () => {
+                setResendStatus('');
+                const supabase = createClient();
+                const { error } = await supabase.auth.resend({ type: 'signup', email });
+                setResendStatus(error ? error.message : 'Confirmation email resent.');
+              }}
+              className="text-sm aw-link"
+            >
+              Re-send confirmation link
+            </button>
           </div>
+          {resendStatus && (
+            <p className="text-sm text-faint mt-2">{resendStatus}</p>
+          )}
         </div>
       </main>
     );
@@ -125,7 +143,26 @@ function AuthForm() {
 
             {error && (
               <div className="border border-warn/30 bg-warn/5 px-3 py-2 text-sm text-warn">
-                {error}
+                <p>{error}</p>
+                {error.toLowerCase().includes('email not confirmed') && (
+                  <div className="mt-2">
+                    <button
+                      type="button"
+                      onClick={async () => {
+                        setResendStatus('');
+                        const supabase = createClient();
+                        const { error } = await supabase.auth.resend({ type: 'signup', email });
+                        setResendStatus(error ? error.message : 'Confirmation email resent.');
+                      }}
+                      className="text-sm underline text-warn hover:text-warn/80"
+                    >
+                      Re-send confirmation link
+                    </button>
+                    {resendStatus && (
+                      <p className="text-xs mt-1">{resendStatus}</p>
+                    )}
+                  </div>
+                )}
               </div>
             )}
 

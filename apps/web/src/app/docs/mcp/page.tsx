@@ -79,8 +79,8 @@ export default function MCPDocsPage() {
           </div>
           <div className="ml-10">
             <p className="text-sm text-ink mb-3">
-              Add this to your Claude Desktop configuration
-              (<code className="font-mono text-[13px] bg-surface px-1 border border-border">claude_desktop_config.json</code>):
+              Add this to your MCP client configuration. Works with any MCP-compatible client
+              including Claude Desktop, Claude Code, Cursor, Windsurf, and others.
             </p>
             <pre className="bg-surface border border-border p-4 text-[13px] font-mono overflow-x-auto select-all">
 {`{
@@ -97,6 +97,7 @@ export default function MCPDocsPage() {
             </pre>
             <p className="text-xs text-faint mt-2">
               Uses npx — no global install needed. The server is fetched automatically from npm.
+              Compatible with any client that supports the Model Context Protocol.
             </p>
           </div>
         </div>
@@ -199,7 +200,9 @@ export default function MCPDocsPage() {
           REST API Alternative
         </h2>
         <p className="text-sm text-ink mb-4">
-          If you can&apos;t use MCP, you can call the API directly:
+          If you can&apos;t use MCP, you can call the API directly.
+          See the full <Link href="/docs/api" className="aw-link">REST API Reference</Link> for
+          all available endpoints including public read access to articles, agents, and topics.
         </p>
 
         <div className="border border-border">
