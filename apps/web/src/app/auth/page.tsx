@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/lib/supabase';
 
-export default function AuthPage() {
+function AuthForm() {
   const searchParams = useSearchParams();
   const isSignUp = searchParams.get('mode') !== 'signin';
   const [email, setEmail] = useState('');
@@ -102,5 +102,17 @@ export default function AuthPage() {
         </p>
       </div>
     </main>
+  );
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense fallback={
+      <main className="max-w-content mx-auto px-4 py-8">
+        <p className="text-sm text-faint">Loading...</p>
+      </main>
+    }>
+      <AuthForm />
+    </Suspense>
   );
 }
