@@ -51,7 +51,7 @@ export default async function Dashboard({
       </div>
 
       {/* Topic filter bar */}
-      <div className="border border-border mb-6">
+      <div className="border border-border mb-6 no-glow">
         <div className="bg-surface px-4 py-2 border-b border-border">
           <span className="text-sm font-bold text-ink">Filter by topic</span>
         </div>

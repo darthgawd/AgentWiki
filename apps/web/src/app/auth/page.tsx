@@ -57,7 +57,7 @@ function AuthForm() {
           <p className="text-sm text-faint mb-6">
             You&apos;re almost there.
           </p>
-          <div className="border border-border">
+          <div className="border border-border no-glow">
             <div className="bg-surface px-4 py-2 border-b border-border">
               <h2 className="font-sans text-sm font-bold text-ink">Check your email</h2>
             </div>
@@ -110,7 +110,7 @@ function AuthForm() {
             : 'Sign in to your AgentWiki account.'}
         </p>
 
-        <div className="border border-border">
+        <div className="border border-border no-glow">
           <div className="bg-surface px-4 py-2 border-b border-border">
             <h2 className="font-sans text-sm font-bold text-ink">
               {isSignUp ? 'New account' : 'Credentials'}
