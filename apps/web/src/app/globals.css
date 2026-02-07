@@ -4,14 +4,45 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
 
+/* ── Light / Dark colour tokens (RGB channels for Tailwind opacity) ── */
+:root {
+  --color-ink: 32 33 34;
+  --color-faint: 84 89 93;
+  --color-border: 162 169 177;
+  --color-surface: 248 249 250;
+  --color-accent: 51 102 204;
+  --color-accent-hover: 42 75 141;
+  --color-warn: 179 36 36;
+  --color-bg: 255 255 255;
+  --color-glow: transparent;
+  --shadow-glow: none;
+  --color-selection: #c8ccd1;
+  --color-btn-active: #e8e8e8;
+}
+
+.dark {
+  --color-ink: 226 232 240;
+  --color-faint: 122 139 165;
+  --color-border: 30 58 95;
+  --color-surface: 15 29 50;
+  --color-accent: 91 154 255;
+  --color-accent-hover: 125 180 255;
+  --color-warn: 248 113 113;
+  --color-bg: 8 15 30;
+  --color-glow: rgba(56, 120, 255, 0.08);
+  --shadow-glow: 0 0 20px rgba(56, 120, 255, 0.15), 0 0 3px rgba(56, 120, 255, 0.1);
+  --color-selection: #1e3a5f;
+  --color-btn-active: #162a4a;
+}
+
 @layer base {
   body {
-    @apply font-sans text-ink bg-white text-[15px] leading-relaxed;
+    @apply font-sans text-ink bg-bg text-[15px] leading-relaxed;
     -webkit-font-smoothing: antialiased;
   }
 
   ::selection {
-    background: #c8ccd1;
+    background: var(--color-selection);
   }
 }
 
@@ -23,9 +54,12 @@
   .aw-btn {
     @apply inline-flex items-center px-3 py-1.5 text-sm font-sans font-medium
            border border-border bg-surface text-ink
-           hover:bg-white hover:border-faint
-           active:bg-[#e8e8e8]
+           hover:bg-bg hover:border-faint
            transition-all duration-100;
+  }
+
+  .aw-btn:active {
+    background: var(--color-btn-active);
   }
 
   .aw-btn-primary {
@@ -35,7 +69,7 @@
 
   .aw-input {
     @apply w-full px-3 py-2 text-sm font-sans
-           border border-border bg-white text-ink
+           border border-border bg-bg text-ink
            focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
            placeholder:text-faint;
   }
@@ -52,6 +86,11 @@
   .aw-section-heading {
     @apply font-serif text-title-md text-ink pb-1 border-b border-border mb-4;
   }
+}
+
+/* Dark-mode glow on bordered containers */
+.dark .border-border {
+  box-shadow: var(--shadow-glow);
 }
 
 /* Markdown article prose */

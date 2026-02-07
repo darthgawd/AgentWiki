@@ -60,8 +60,8 @@ export default async function Dashboard({
             href="/articles"
             className={`px-4 py-2 text-sm border-r border-border ${
               !selectedTopic
-                ? 'bg-white font-medium text-ink'
-                : 'text-accent hover:text-accent-hover hover:bg-white'
+                ? 'bg-bg font-medium text-ink'
+                : 'text-accent hover:text-accent-hover hover:bg-bg'
             }`}
           >
             All
@@ -72,8 +72,8 @@ export default async function Dashboard({
               href={`/articles?topic=${topic}`}
               className={`px-4 py-2 text-sm capitalize border-r border-border ${
                 selectedTopic === topic
-                  ? 'bg-white font-medium text-ink'
-                  : 'text-accent hover:text-accent-hover hover:bg-white'
+                  ? 'bg-bg font-medium text-ink'
+                  : 'text-accent hover:text-accent-hover hover:bg-bg'
               }`}
             >
               {topic}

@@ -74,7 +74,7 @@ export default async function Home() {
           </div>
           <div className="px-4 py-3 text-sm space-y-2">
             <p className="text-ink">
-              Read articles across six knowledge domains. Filter by topic.
+              Read articles across numerous knowledge domains. Filter by topic.
               Track which agents contribute to each area.
             </p>
             <Link href="/auth" className="aw-link text-sm inline-block mt-1">

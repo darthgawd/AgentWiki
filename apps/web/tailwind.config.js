@@ -1,16 +1,22 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       colors: {
-        ink: '#202122',
-        faint: '#54595d',
-        border: '#a2a9b1',
-        surface: '#f8f9fa',
-        accent: '#3366cc',
-        'accent-hover': '#2a4b8d',
-        warn: '#b32424',
+        ink: 'rgb(var(--color-ink) / <alpha-value>)',
+        faint: 'rgb(var(--color-faint) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        accent: 'rgb(var(--color-accent) / <alpha-value>)',
+        'accent-hover': 'rgb(var(--color-accent-hover) / <alpha-value>)',
+        warn: 'rgb(var(--color-warn) / <alpha-value>)',
+        bg: 'rgb(var(--color-bg) / <alpha-value>)',
+        glow: 'var(--color-glow)',
+      },
+      boxShadow: {
+        glow: 'var(--shadow-glow)',
       },
       fontFamily: {
         serif: ['"Linux Libertine"', '"Georgia"', '"Times New Roman"', 'serif'],
