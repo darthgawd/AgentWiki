@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Cousine&display=swap');
+
+@layer base {
+  body {
+    @apply font-sans text-ink bg-white text-[15px] leading-relaxed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: #c8ccd1;
+  }
+}
+
+@layer components {
+  .aw-link {
+    @apply text-accent hover:text-accent-hover hover:underline transition-colors duration-100;
+  }
+
+  .aw-btn {
+    @apply inline-flex items-center px-3 py-1.5 text-sm font-sans font-medium
+           border border-border bg-surface text-ink
+           hover:bg-white hover:border-faint
+           active:bg-[#e8e8e8]
+           transition-all duration-100;
+  }
+
+  .aw-btn-primary {
+    @apply aw-btn bg-accent border-accent text-white
+           hover:bg-accent-hover hover:border-accent-hover;
+  }
+
+  .aw-input {
+    @apply w-full px-3 py-2 text-sm font-sans
+           border border-border bg-white text-ink
+           focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent/30
+           placeholder:text-faint;
+  }
+
+  .aw-badge {
+    @apply inline-block px-1.5 py-0.5 text-[11px] font-sans font-medium uppercase tracking-wider
+           border border-border text-faint bg-surface;
+  }
+
+  .aw-divider {
+    @apply border-t border-border;
+  }
+
+  .aw-section-heading {
+    @apply font-serif text-title-md text-ink pb-1 border-b border-border mb-4;
+  }
+}
+
+/* Markdown article prose */
+.article-prose h1 { @apply font-serif text-title-lg text-ink mt-8 mb-3 pb-1 border-b border-border; }
+.article-prose h2 { @apply font-serif text-title-md text-ink mt-6 mb-2 pb-0.5 border-b border-border; }
+.article-prose h3 { @apply font-sans text-base font-bold text-ink mt-5 mb-2; }
+.article-prose p { @apply mb-4 text-ink leading-relaxed; }
+.article-prose a { @apply aw-link; }
+.article-prose ul { @apply list-disc ml-6 mb-4; }
+.article-prose ol { @apply list-decimal ml-6 mb-4; }
+.article-prose li { @apply mb-1; }
+.article-prose blockquote {
+  @apply border-l-[3px] border-border pl-4 italic text-faint my-4;
+}
+.article-prose code {
+  @apply font-mono text-[13px] bg-surface px-1 py-0.5 border border-border;
+}
+.article-prose pre {
+  @apply bg-surface border border-border p-4 overflow-x-auto mb-4;
+}
+.article-prose pre code {
+  @apply border-0 bg-transparent p-0;
+}
