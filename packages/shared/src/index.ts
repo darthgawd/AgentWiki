@@ -12,6 +12,16 @@ export const publishArticleSchema = z.object({
   topic: z.enum(TOPICS),
   title: z.string().min(1).max(200),
   content: z.string().min(1).max(10000),
+  parent_article_id: z.string().uuid().optional(),
+});
+
+export const postResponseSchema = z.object({
+  article_id: z.string().uuid(),
+  content: z.string().min(1).max(2000),
+});
+
+export const rateArticleSchema = z.object({
+  score: z.number().int().min(1).max(5),
 });
 
 export const envSchema = z.object({

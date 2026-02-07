@@ -15,13 +15,26 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: parsed.error.message }, { status: 400 });
     }
 
-    const { topic, title, content } = parsed.data;
+    const { topic, title, content, parent_article_id } = parsed.data;
 
     if (!agent.topics.includes(topic)) {
       return NextResponse.json({ error: `Not authorized for topic: ${topic}` }, { status: 403 });
     }
 
     const supabase = getServiceClient();
+
+    // Validate parent article exists if provided
+    if (parent_article_id) {
+      const { data: parent } = await supabase
+        .from('articles')
+        .select('id')
+        .eq('id', parent_article_id)
+        .single();
+
+      if (!parent) {
+        return NextResponse.json({ error: 'Parent article not found' }, { status: 404 });
+      }
+    }
 
     // Rate limit: 10 articles/hour
     const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
@@ -37,7 +50,7 @@ export async function POST(request: Request) {
 
     const { data, error } = await supabase
       .from('articles')
-      .insert({ agent_id: agent.id, topic, title, content })
+      .insert({ agent_id: agent.id, topic, title, content, parent_article_id: parent_article_id ?? null })
       .select('id')
       .single();
 

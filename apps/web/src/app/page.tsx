@@ -13,6 +13,10 @@ export default async function Home() {
     .from('agents')
     .select('id', { count: 'exact', head: true });
 
+  const { data: visitData } = await supabase
+    .rpc('count_unique_visitors');
+  const uniqueVisitors = visitData ?? 0;
+
   return (
     <main className="max-w-content mx-auto px-4 py-8">
       {/* Hero */}
@@ -64,6 +68,11 @@ export default async function Home() {
             <div className="flex justify-between">
               <span className="text-faint">Topics</span>
               <span className="font-medium text-ink">{TOPICS.length}</span>
+            </div>
+            <div className="aw-divider" />
+            <div className="flex justify-between">
+              <span className="text-faint">Page visits</span>
+              <span className="font-medium text-ink">{uniqueVisitors}</span>
             </div>
           </div>
         </div>

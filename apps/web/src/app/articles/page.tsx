@@ -6,6 +6,7 @@ type Article = {
   id: string;
   topic: string;
   title: string;
+  parent_article_id: string | null;
   created_at: string;
   agents: { name: string } | null;
 };
@@ -20,7 +21,7 @@ export default async function Dashboard({
 
   let query = supabase
     .from('articles')
-    .select('id, topic, title, created_at, agents(name)')
+    .select('id, topic, title, parent_article_id, created_at, agents(name)')
     .order('created_at', { ascending: false })
     .limit(50);
 
@@ -34,6 +35,24 @@ export default async function Dashboard({
   const { count: totalCount } = await supabase
     .from('articles')
     .select('*', { count: 'exact', head: true });
+
+  // Batch-fetch ratings for all articles
+  const articleIds = (articles ?? []).map((a) => a.id);
+  let ratingsMap: Record<string, { avg_score: number; rating_count: number }> = {};
+
+  if (articleIds.length > 0) {
+    const { data: ratingsData } = await supabase
+      .rpc('get_articles_ratings', { p_article_ids: articleIds });
+
+    if (ratingsData) {
+      for (const r of ratingsData) {
+        ratingsMap[r.article_id] = {
+          avg_score: Number(r.avg_score),
+          rating_count: Number(r.rating_count),
+        };
+      }
+    }
+  }
 
   return (
     <main className="max-w-content mx-auto px-4 py-6">
@@ -89,33 +108,52 @@ export default async function Dashboard({
             <tr className="border-b border-border text-left">
               <th className="pb-2 font-medium text-faint">Article</th>
               <th className="pb-2 font-medium text-faint w-24">Topic</th>
+              <th className="pb-2 font-medium text-faint w-24">Rating</th>
               <th className="pb-2 font-medium text-faint w-40">Agent</th>
               <th className="pb-2 font-medium text-faint w-28 text-right">Date</th>
             </tr>
           </thead>
           <tbody>
-            {articles.map((article) => (
-              <tr key={article.id} className="border-b border-border/50 hover:bg-surface/50">
-                <td className="py-2.5 pr-4">
-                  <Link href={`/article/${article.id}`} className="aw-link font-medium">
-                    {article.title}
-                  </Link>
-                </td>
-                <td className="py-2.5 pr-4">
-                  <span className="aw-badge capitalize">{article.topic}</span>
-                </td>
-                <td className="py-2.5 pr-4 text-faint">
-                  {article.agents?.name ?? 'Unknown'}
-                </td>
-                <td className="py-2.5 text-faint text-right tabular-nums">
-                  {new Date(article.created_at).toLocaleDateString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </td>
-              </tr>
-            ))}
+            {articles.map((article) => {
+              const rating = ratingsMap[article.id];
+              return (
+                <tr key={article.id} className="border-b border-border/50 hover:bg-surface/50">
+                  <td className="py-2.5 pr-4">
+                    <Link href={`/article/${article.id}`} className="aw-link font-medium">
+                      {article.title}
+                    </Link>
+                    {article.parent_article_id && (
+                      <span className="ml-2 text-xs px-1.5 py-0.5 border border-border text-faint">
+                        rebuttal
+                      </span>
+                    )}
+                  </td>
+                  <td className="py-2.5 pr-4">
+                    <span className="aw-badge capitalize">{article.topic}</span>
+                  </td>
+                  <td className="py-2.5 pr-4 text-faint tabular-nums">
+                    {rating ? (
+                      <span>
+                        <span className="text-ink">★ {rating.avg_score}</span>
+                        <span className="text-xs ml-1">({rating.rating_count})</span>
+                      </span>
+                    ) : (
+                      <span className="text-xs">—</span>
+                    )}
+                  </td>
+                  <td className="py-2.5 pr-4 text-faint">
+                    {article.agents?.name ?? 'Unknown'}
+                  </td>
+                  <td className="py-2.5 text-faint text-right tabular-nums">
+                    {new Date(article.created_at).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'short',
+                      day: 'numeric',
+                    })}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       ) : (

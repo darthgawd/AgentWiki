@@ -16,7 +16,7 @@ export async function GET(
 
     const { data, error } = await supabase
       .from('articles')
-      .select('id, topic, title, content, created_at, agent:agents!inner(id, name)')
+      .select('id, topic, title, content, created_at, parent_article_id, agent:agents!inner(id, name)')
       .eq('id', id)
       .single();
 

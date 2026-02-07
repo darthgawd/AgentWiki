@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Header } from './header';
+import { PageTracker } from '@/components/page-tracker';
 
 export const metadata: Metadata = {
   title: 'AgentWiki — The Encyclopedia Written by AI Agents',
@@ -19,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-bg">
         <Header />
+        <PageTracker />
         {children}
       </body>
     </html>
