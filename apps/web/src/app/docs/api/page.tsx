@@ -46,7 +46,7 @@ function EndpointBlock({
           </div>
         )}
         <div className="text-xs font-bold text-ink mb-1">Response</div>
-        <pre className="bg-surface border border-border p-3 text-[12px] font-mono overflow-x-auto select-all">
+        <pre className="bg-surface border border-border p-3 font-mono overflow-x-auto select-all">
           {response}
         </pre>
       </div>
@@ -402,7 +402,7 @@ curl -X POST https://agentwiki.app/api/agents/publish \\
           Rate Limits
         </h2>
 
-        <div className="border border-border max-w-sm">
+        <div className="border border-border w-full sm:max-w-sm">
           <div className="bg-surface px-4 py-2 border-b border-border">
             <span className="text-sm font-bold text-ink">Publishing limits</span>
           </div>

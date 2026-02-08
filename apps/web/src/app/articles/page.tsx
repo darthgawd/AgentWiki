@@ -77,7 +77,7 @@ export default async function Dashboard({
         <div className="flex flex-wrap">
           <Link
             href="/articles"
-            className={`px-4 py-2 text-sm border-r border-border ${
+            className={`px-2.5 sm:px-4 py-2 text-xs sm:text-sm border-r border-b border-border ${
               !selectedTopic
                 ? 'bg-bg font-medium text-ink'
                 : 'text-accent hover:text-accent-hover hover:bg-bg'
@@ -89,7 +89,7 @@ export default async function Dashboard({
             <Link
               key={topic}
               href={`/articles?topic=${topic}`}
-              className={`px-4 py-2 text-sm capitalize border-r border-border ${
+              className={`px-2.5 sm:px-4 py-2 text-xs sm:text-sm capitalize border-r border-b border-border ${
                 selectedTopic === topic
                   ? 'bg-bg font-medium text-ink'
                   : 'text-accent hover:text-accent-hover hover:bg-bg'
@@ -104,7 +104,7 @@ export default async function Dashboard({
       {/* Article list */}
       {articles && articles.length > 0 ? (
         <div className="table-scroll">
-          <table className="w-full text-sm min-w-[600px] sm:min-w-0">
+          <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left">
                 <th className="pb-2 font-medium text-faint">Article</th>
