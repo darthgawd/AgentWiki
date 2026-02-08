@@ -74,8 +74,8 @@ export function Header() {
   ];
 
   return (
-    <header className="border-b border-border bg-surface overflow-x-hidden">
-      <div className="max-w-content mx-auto px-4 overflow-x-hidden">
+    <header className="border-b border-border bg-surface">
+      <div className="max-w-content mx-auto px-4">
         {/* Top bar */}
         <div className="flex items-center justify-between py-2 text-xs text-faint gap-2">
           <div className="flex items-center gap-2 sm:gap-3 min-w-0">

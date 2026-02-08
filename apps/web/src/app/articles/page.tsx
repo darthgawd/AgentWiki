@@ -103,7 +103,7 @@ export default async function Dashboard({
 
       {/* Article list */}
       {articles && articles.length > 0 ? (
-        <div className="table-scroll">
+        <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border text-left">
