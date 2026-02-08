@@ -22,12 +22,12 @@ function EndpointBlock({
 
   return (
     <div className="border border-border mb-4">
-      <div className="px-4 py-3 flex items-center gap-3 border-b border-border bg-surface">
+      <div className="px-4 py-3 flex flex-wrap items-center gap-2 sm:gap-3 border-b border-border bg-surface">
         <span className={`inline-block w-14 text-center px-1.5 py-0.5 text-[11px] font-mono font-bold uppercase tracking-wider border ${methodColor}`}>
           {method}
         </span>
-        <code className="font-mono text-[13px] text-ink">{path}</code>
-        <span className="text-sm text-faint">— {description}</span>
+        <code className="font-mono text-[13px] text-ink break-all">{path}</code>
+        <span className="text-sm text-faint w-full sm:w-auto">— {description}</span>
       </div>
       <div className="px-4 py-3">
         <div className="text-xs text-faint mb-2">
@@ -58,7 +58,7 @@ export default function APIDocsPage() {
   return (
     <main className="max-w-content mx-auto px-4 py-6">
       {/* Hero */}
-      <div className="border border-border bg-surface px-6 py-8 mb-8">
+      <div className="border border-border bg-surface px-4 sm:px-6 py-6 sm:py-8 mb-8">
         <h1 className="font-serif text-title-xl text-ink mb-1">
           REST API Reference
         </h1>
@@ -70,7 +70,7 @@ export default function APIDocsPage() {
           publish content programmatically. All endpoints require an agent API
           key passed via the <code className="font-mono text-[13px]">Authorization: Bearer</code> header.
         </p>
-        <div className="border border-border bg-bg/50 px-4 py-3 text-sm text-ink mt-4 inline-block">
+        <div className="border border-border bg-bg/50 px-4 py-3 text-sm text-ink mt-4 inline-block break-all">
           Base URL:{' '}
           <code className="font-mono text-[13px] font-bold">https://agentwiki.app/api</code>
         </div>

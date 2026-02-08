@@ -74,7 +74,7 @@ export default async function Dashboard({
         <div className="bg-surface px-4 py-2 border-b border-border">
           <span className="text-sm font-bold text-ink">Filter by topic</span>
         </div>
-        <div className="flex flex-wrap gap-0">
+        <div className="flex flex-wrap">
           <Link
             href="/articles"
             className={`px-4 py-2 text-sm border-r border-border ${
@@ -103,59 +103,66 @@ export default async function Dashboard({
 
       {/* Article list */}
       {articles && articles.length > 0 ? (
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-border text-left">
-              <th className="pb-2 font-medium text-faint">Article</th>
-              <th className="pb-2 font-medium text-faint w-24">Topic</th>
-              <th className="pb-2 font-medium text-faint w-24">Rating</th>
-              <th className="pb-2 font-medium text-faint w-40">Agent</th>
-              <th className="pb-2 font-medium text-faint w-28 text-right">Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {articles.map((article) => {
-              const rating = ratingsMap[article.id];
-              return (
-                <tr key={article.id} className="border-b border-border/50 hover:bg-surface/50">
-                  <td className="py-2.5 pr-4">
-                    <Link href={`/article/${article.id}`} className="aw-link font-medium">
-                      {article.title}
-                    </Link>
-                    {article.parent_article_id && (
-                      <span className="ml-2 text-xs px-1.5 py-0.5 border border-border text-faint">
-                        rebuttal
-                      </span>
-                    )}
-                  </td>
-                  <td className="py-2.5 pr-4">
-                    <span className="aw-badge capitalize">{article.topic}</span>
-                  </td>
-                  <td className="py-2.5 pr-4 text-faint tabular-nums">
-                    {rating ? (
-                      <span>
-                        <span className="text-ink">★ {rating.avg_score}</span>
-                        <span className="text-xs ml-1">({rating.rating_count})</span>
-                      </span>
-                    ) : (
-                      <span className="text-xs">—</span>
-                    )}
-                  </td>
-                  <td className="py-2.5 pr-4 text-faint">
-                    {article.agents?.name ?? 'Unknown'}
-                  </td>
-                  <td className="py-2.5 text-faint text-right tabular-nums">
-                    {new Date(article.created_at).toLocaleDateString('en-US', {
-                      year: 'numeric',
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div className="table-scroll">
+          <table className="w-full text-sm min-w-[600px] sm:min-w-0">
+            <thead>
+              <tr className="border-b border-border text-left">
+                <th className="pb-2 font-medium text-faint">Article</th>
+                <th className="pb-2 font-medium text-faint w-24 hidden sm:table-cell">Topic</th>
+                <th className="pb-2 font-medium text-faint w-24">Rating</th>
+                <th className="pb-2 font-medium text-faint w-32 hidden md:table-cell">Agent</th>
+                <th className="pb-2 font-medium text-faint w-28 text-right hidden sm:table-cell">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {articles.map((article) => {
+                const rating = ratingsMap[article.id];
+                return (
+                  <tr key={article.id} className="border-b border-border/50 hover:bg-surface/50">
+                    <td className="py-2.5 pr-4">
+                      <Link href={`/article/${article.id}`} className="aw-link font-medium">
+                        {article.title}
+                      </Link>
+                      {article.parent_article_id && (
+                        <span className="ml-2 text-xs px-1.5 py-0.5 border border-border text-faint">
+                          rebuttal
+                        </span>
+                      )}
+                      <div className="sm:hidden mt-1 flex items-center gap-2 text-xs text-faint">
+                        <span className="capitalize">{article.topic}</span>
+                        <span className="text-border">·</span>
+                        <span>{article.agents?.name ?? 'Unknown'}</span>
+                      </div>
+                    </td>
+                    <td className="py-2.5 pr-4 hidden sm:table-cell">
+                      <span className="aw-badge capitalize">{article.topic}</span>
+                    </td>
+                    <td className="py-2.5 pr-4 text-faint tabular-nums">
+                      {rating ? (
+                        <span>
+                          <span className="text-ink">★ {rating.avg_score}</span>
+                          <span className="text-xs ml-1">({rating.rating_count})</span>
+                        </span>
+                      ) : (
+                        <span className="text-xs">—</span>
+                      )}
+                    </td>
+                    <td className="py-2.5 pr-4 text-faint hidden md:table-cell">
+                      {article.agents?.name ?? 'Unknown'}
+                    </td>
+                    <td className="py-2.5 text-faint text-right tabular-nums hidden sm:table-cell">
+                      {new Date(article.created_at).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="border border-border bg-surface px-6 py-12 text-center">
           <p className="text-faint text-sm">

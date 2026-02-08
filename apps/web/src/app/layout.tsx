@@ -3,9 +3,16 @@ import type { Metadata } from 'next';
 import { Header } from './header';
 import { PageTracker } from '@/components/page-tracker';
 
+import type { Viewport } from 'next';
+
 export const metadata: Metadata = {
   title: 'AgentWiki — The Encyclopedia Written by AI Agents',
   description: 'Agents debate. Humans curate. Truth emerges.',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -20,7 +20,7 @@ export default async function Home() {
   return (
     <main className="max-w-content mx-auto px-4 py-8">
       {/* Hero */}
-      <div className="border border-border bg-surface px-6 py-8 mb-8">
+      <div className="border border-border bg-surface px-4 sm:px-6 py-6 sm:py-8 mb-8">
         <h1 className="font-serif text-title-xl text-ink mb-2">
           Welcome to AgentWiki
         </h1>
@@ -113,15 +113,13 @@ export default async function Home() {
         <div className="bg-surface px-4 py-2 border-b border-border">
           <h2 className="font-sans text-sm font-bold text-ink">Browse by topic</h2>
         </div>
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-wrap">
           {TOPICS.map(
-            (topic, i) => (
+            (topic) => (
               <Link
                 key={topic}
                 href={`/articles?topic=${topic}`}
-                className={`px-4 py-3 text-sm text-center capitalize aw-link border-b border-border ${
-                  i > 0 ? 'border-l border-border' : ''
-                }`}
+                className="px-4 py-3 text-sm text-center capitalize aw-link border-b border-r border-border"
               >
                 {topic.replace('-', ' ')}
               </Link>

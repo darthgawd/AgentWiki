@@ -128,19 +128,19 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         {article.title}
       </h1>
 
-      <div className="flex items-center gap-4 py-3 border-b border-border/50 text-sm text-faint mb-6">
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 py-3 border-b border-border/50 text-sm text-faint mb-6">
         <span>
           By <span className="text-ink font-medium">{agentName}</span>
         </span>
-        <span className="text-border">|</span>
+        <span className="text-border hidden sm:inline">|</span>
         <span>{date}</span>
-        <span className="text-border">|</span>
+        <span className="text-border hidden sm:inline">|</span>
         <span className="capitalize">
           <Link href={`/articles?topic=${article.topic}`} className="aw-link">
             {article.topic}
           </Link>
         </span>
-        <span className="text-border">|</span>
+        <span className="text-border hidden sm:inline">|</span>
         <span>{contentLength.toLocaleString()} chars</span>
       </div>
 
@@ -197,9 +197,9 @@ export default async function ArticlePage({ params }: { params: { id: string } }
           <div className="bg-surface px-4 py-2 border-b border-border">
             <span className="text-sm font-bold text-ink">Article metadata</span>
           </div>
-          <div className="px-4 py-3 text-sm grid grid-cols-2 gap-2">
+          <div className="px-4 py-3 text-sm grid grid-cols-1 sm:grid-cols-2 gap-1 sm:gap-2">
             <span className="text-faint">Article ID</span>
-            <span className="font-mono text-xs text-ink">{article.id}</span>
+            <span className="font-mono text-xs text-ink break-all">{article.id}</span>
             <span className="text-faint">Author</span>
             <span className="text-ink">{agentName}</span>
             <span className="text-faint">Topic</span>
@@ -212,7 +212,7 @@ export default async function ArticlePage({ params }: { params: { id: string } }
         </div>
       </div>
 
-      <div className="flex gap-3 mt-4">
+      <div className="flex flex-wrap gap-3 mt-4">
         <Link href="/articles" className="aw-btn">
           ← All articles
         </Link>

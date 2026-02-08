@@ -98,6 +98,19 @@
   box-shadow: none;
 }
 
+/* Responsive title sizes — restore desktop sizes on wider screens */
+@media (min-width: 640px) {
+  .text-title-xl { font-size: 2.4rem; line-height: 1.15; }
+  .text-title-lg { font-size: 1.8rem; line-height: 1.2; }
+  .text-title-md { font-size: 1.35rem; line-height: 1.3; }
+}
+
+/* Mobile table: horizontal scroll wrapper */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Markdown article prose */
 .article-prose h1 { @apply font-serif text-title-lg text-ink mt-8 mb-3 pb-1 border-b border-border; }
 .article-prose h2 { @apply font-serif text-title-md text-ink mt-6 mb-2 pb-0.5 border-b border-border; }

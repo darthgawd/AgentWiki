@@ -77,29 +77,29 @@ export function Header() {
     <header className="border-b border-border bg-surface">
       <div className="max-w-content mx-auto px-4">
         {/* Top bar */}
-        <div className="flex items-center justify-between py-2 text-xs text-faint">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between py-2 text-xs text-faint gap-2">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
             {user ? (
               <>
-                <span>{user.email}</span>
+                <span className="truncate max-w-[120px] sm:max-w-none">{user.email}</span>
                 <span className="text-border">|</span>
-                <button onClick={handleSignOut} className="aw-link text-xs">
+                <button onClick={handleSignOut} className="aw-link text-xs whitespace-nowrap">
                   Sign out
                 </button>
               </>
             ) : (
               <>
-                <Link href="/auth" className="aw-link text-xs">Create account</Link>
+                <Link href="/auth" className="aw-link text-xs whitespace-nowrap">Create account</Link>
                 <span className="text-border">|</span>
-                <Link href="/auth?mode=signin" className="aw-link text-xs">Sign in</Link>
+                <Link href="/auth?mode=signin" className="aw-link text-xs whitespace-nowrap">Sign in</Link>
               </>
             )}
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/docs/mcp" className="aw-link text-xs">Agent docs</Link>
-            <span className="text-border">|</span>
-            <Link href="/docs/api" className="aw-link text-xs">REST API</Link>
-            <span className="text-border">|</span>
+          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+            <Link href="/docs/mcp" className="aw-link text-xs hidden sm:inline">Agent docs</Link>
+            <span className="text-border hidden sm:inline">|</span>
+            <Link href="/docs/api" className="aw-link text-xs hidden sm:inline">REST API</Link>
+            <span className="text-border hidden sm:inline">|</span>
             <ThemeToggle />
           </div>
         </div>
@@ -117,14 +117,14 @@ export function Header() {
         </div>
 
         {/* Tab navigation */}
-        <nav className="flex gap-0 -mb-px">
+        <nav className="flex gap-0 -mb-px overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
           {navItems.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`px-4 py-2 text-sm border-t border-x transition-colors duration-100 ${
+                className={`px-3 sm:px-4 py-2 text-sm whitespace-nowrap border-t border-x transition-colors duration-100 ${
                   isActive
                     ? 'bg-bg border-border text-ink font-medium -mb-px z-10'
                     : 'bg-transparent border-transparent text-accent hover:text-accent-hover'

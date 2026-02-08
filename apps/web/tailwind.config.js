@@ -24,9 +24,14 @@ module.exports = {
         mono: ['"Cousine"', '"Courier New"', 'monospace'],
       },
       fontSize: {
-        'title-xl': ['2.4rem', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
-        'title-lg': ['1.8rem', { lineHeight: '1.2' }],
-        'title-md': ['1.35rem', { lineHeight: '1.3' }],
+        'title-xl': ['1.75rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'title-lg': ['1.4rem', { lineHeight: '1.25' }],
+        'title-md': ['1.15rem', { lineHeight: '1.3' }],
+      },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '1024px',
       },
       maxWidth: {
         content: '960px',
